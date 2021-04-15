@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  ocrlayer:
+    build:
+      context: ./OCRLayer
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5000
+    environment:
+      - PYTHONUNBUFFERED=1
+  
+  parserlayer:
+    build:
+      context: ./ParserLayer
+      dockerfile: Dockerfile
+    ports:
+      - 5002:5000
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes: 
+      - ./Shared/parsedDocs:/code/parsedDocs
+  
+  nerlayer:
+    build:
+      context: ./NERLayer
+      dockerfile: Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes: 
+      - ./Shared/parsedDocs:/code/parsedDocs
+      

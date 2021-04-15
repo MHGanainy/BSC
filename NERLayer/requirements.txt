@@ -1,0 +1,6 @@
+numpy
+pandas
+Flask==1.1.1
+Werkzeug==1.0.1
+boto3==1.17.44
+requests
